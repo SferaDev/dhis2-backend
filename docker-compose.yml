@@ -5,10 +5,12 @@ services:
     restart: always
     volumes:
       - ./config/DHIS2_home/dhis.conf:/DHIS2_home/dhis.conf
+      - ./.apps/:/DHIS2_home/apps
       - ./config/server.xml:/usr/local/tomcat/conf/server.xml
       - home:/DHIS2_home
     environment:
       CATALINA_OPTS: "-Dcontext.path='${DHIS2_CORE_CONTEXT_PATH:-}'"
+      JAVA_OPTS: "-Xmx7500m -Xms4000m"
     depends_on:
       - "db"
   db:

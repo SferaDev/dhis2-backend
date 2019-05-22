@@ -39,10 +39,10 @@ if [ ${file: -7} == ".sql.gz" ]
     if [ "$2" == "full" ]
       then
         echo "Creating full backup, including analytics tables..."
-        docker-compose exec -e PGPASSWORD=$dbPass -T $dbContainer pg_dump -h $dbContainer --dbname $dbName --username $dbUser | gzip -c > $file
+        docker-compose exec -e PGPASSWORD=$dbPass -T $dbContainer pg_dump -h $dbContainer --dbname $dbName --username $dbUser | gzip -9 -c > $file
       else # Exclude analytics and resource tables
         echo "Creating lean backup..."
-        docker-compose exec -e PGPASSWORD=$dbPass -T $dbContainer pg_dump -T analytics* -T _* -h $dbContainer --dbname $dbName --username $dbUser | gzip -c > $file
+        docker-compose exec -e PGPASSWORD=$dbPass -T $dbContainer pg_dump -T analytics* -T _* -h $dbContainer --dbname $dbName --username $dbUser | gzip -9 -c > $file
     fi
     
     if [ $started -eq 1 ]

@@ -42,7 +42,7 @@
                 autoDeploy="false"
                 deployOnStartup="false"
             >
-                <Context path="${context.path}" docBase="ROOT/" />
+                <Context path="" docBase="ROOT/" />
 
                 <Valve
                     className="org.apache.catalina.valves.AccessLogValve"
